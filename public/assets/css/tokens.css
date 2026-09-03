@@ -148,20 +148,25 @@
    ══════════════════════════════════════════════════════════════════ */
 
 /*
- * Sigla scrie „NutriNature" cu o serifă clasică, cu contrast mare între plin
- * și subțire. Cormorant Garamond este cea mai apropiată dintre serifele libere
- * și se potrivește tonului: centru de sănătate, nu cabinet medical.
+ * Fonturile.
  *
- * Corpul textului rămâne sans, altfel pagina devine greu de citit pe telefon.
- * Lato are diacriticele românești complete și o formă caldă, potrivită.
+ * Prima alegere a fost Cormorant Garamond plus Lato. Lato a picat la proba de
+ * diacritice: fișierul pe care îl servește Google conține 30 de glife în
+ * „latin-ext" și nu are Ș, ș, Ț, ț, Ă, ă. Browserul le lua din alt font, deci
+ * în mijlocul unui cuvânt românesc apărea o literă de altă formă — se vedea cu
+ * ochiul liber. Verificat citind tabela de caractere din woff2, nu din ochi.
  *
- * Ambele sunt servite de pe serverul nostru: nicio cerere către Google, deci
- * nicio adresă IP de vizitator trimisă în afară fără temei.
+ * Acum: EB Garamond la titluri, aceeași familie de serifă ca litera din siglă,
+ * și Source Sans 3 la text. Amândouă acoperă complet româna, inclusiv virgula
+ * dedesubt, care e forma corectă — nu sedila.
+ *
+ * Sunt servite de pe serverul nostru: nicio cerere către Google, deci nicio
+ * adresă IP de vizitator trimisă în afară fără temei.
  */
 
 :root {
-  --font-titlu: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --font-baza:  Lato, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-titlu: "EB Garamond", Georgia, "Times New Roman", serif;
+  --font-baza:  "Source Sans 3", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   --nav-culoare: var(--verde-800);
 }
 
@@ -178,13 +183,13 @@ h1, h2, h3, h4, .navbar-brand {
 }
 
 /*
- * Cormorant are ochiul literei mic pentru corpul lui nominal: la aceeași
- * valoare în px arată vizibil mai mic decât Lato. Titlurile primesc de aceea
- * un pas în plus, ca ierarhia să se vadă.
+ * EB Garamond are ochiul literei mai mare decât Cormorant, deci titlurile scad
+ * cu un pas față de varianta dinainte: la aceeași valoare în px ar fi arătat
+ * prea grele față de text.
  */
-h1, .h1 { font-size: clamp(2.4rem, 1.6rem + 3vw, 4rem); line-height: 1.08; }
-h2, .h2 { font-size: clamp(1.9rem, 1.4rem + 2vw, 3rem);  line-height: 1.15; }
-h3, .h3 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);  line-height: 1.2; }
+h1, .h1 { font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.4rem); line-height: 1.1; }
+h2, .h2 { font-size: clamp(1.7rem, 1.25rem + 1.7vw, 2.5rem); line-height: 1.18; }
+h3, .h3 { font-size: clamp(1.35rem, 1.1rem + .8vw, 1.75rem); line-height: 1.25; }
 
 /* Titlurile mici de secțiune rămân sans: sunt etichete, nu titluri. */
 h5, h6, .eticheta-sectiune {
@@ -255,9 +260,16 @@ h5, h6, .eticheta-sectiune {
 .custom-page-content .lead { max-width: 48ch; }
 .custom-page-content p     { max-width: 54ch; }
 
-/* Fără asta, un text centrat rămâne lipit la stânga când primește max-width. */
+/*
+ * Fără asta, un text centrat rămâne lipit la stânga când primește max-width:
+ * cutia se strânge la 54ch, textul se centrează în ea, dar cutia stă la stânga.
+ * A doua pereche de selectoare prinde cazul în care „text-center" e chiar pe
+ * paragraf, nu pe un părinte.
+ */
 .custom-page-content .text-center p,
-.custom-page-content .text-center .lead { margin-inline: auto; }
+.custom-page-content .text-center .lead,
+.custom-page-content p.text-center,
+.custom-page-content .lead.text-center { margin-inline: auto; }
 
 .custom-page-content p:not(.small):not(.mb-0) { line-height: 1.65; }
 
@@ -584,4 +596,66 @@ h5, h6, .eticheta-sectiune {
     var(--crem-stins), var(--crem-stins) 14px,
     #EFE7DA 14px, #EFE7DA 28px
   );
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Contact
+   ══════════════════════════════════════════════════════════════════ */
+
+.card-contact {
+  height: 100%;
+  padding: 1.75rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--auriu-500);
+  text-align: center;
+}
+
+.card-contact .pictograma { margin-bottom: .75rem; }
+
+.card-contact__titlu {
+  font-family: var(--font-baza);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .8125rem;
+  color: var(--text-accent);
+  margin-bottom: .5rem;
+}
+
+/*
+ * Locul hărții, cât timp nu avem adresa.
+ *
+ * Nu punem un iframe Google Maps gol: ar arăta altceva decât adevărul, iar
+ * Google pune cookie-uri înainte ca vizitatorul să apuce să accepte ceva.
+ */
+.harta-lipsa {
+  display: grid;
+  place-items: center;
+  min-height: 260px;
+  padding: 2rem;
+  text-align: center;
+  color: var(--ink-muted);
+  border: 1px solid var(--line);
+  background: repeating-linear-gradient(
+    135deg,
+    var(--crem-stins), var(--crem-stins) 14px,
+    #EFE7DA 14px, #EFE7DA 28px
+  );
+}
+
+/* Numărul de pas, folosit și pe prima pagină și pe „Programare". */
+.pasi__numar {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--verde-800);
+  color: var(--crem);
+  font-family: var(--font-titlu);
+  font-size: 1.5rem;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum" 1;
+  margin-bottom: 1rem;
 }

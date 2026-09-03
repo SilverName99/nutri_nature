@@ -1,0 +1,154 @@
+<!--
+  Contact — NutriNature
+
+  Datele de contact nu le avem încă, deci apar ca [DE COMPLETAT]. Le adună
+  scripts/lipsuri.php în documentul pentru client.
+
+  Formularul trimite JSON către /contact/send, ruta pe care o are aplicația;
+  mesajele se văd în dashboard, la Emailuri → Mesaje formular. Nu înlocuiește
+  telefonul, care rămâne calea principală — de aceea butonul de sunat stă primul
+  și mai mare.
+-->
+
+<header class="antet-serviciu">
+  <div class="container antet-serviciu__continut">
+    <p class="eticheta-sectiune antet-serviciu__eticheta">Suntem aproape</p>
+    <h1>Contact</h1>
+    <p class="despartitor-frunza" aria-hidden="true"><svg class="pictograma" aria-hidden="true" focusable="false"><use href="/assets/img/pictograme.svg#frunza"></use></svg></p>
+    <p class="antet-serviciu__lead">Cel mai simplu este să ne suni. Dacă îți e mai la îndemână,
+    scrie-ne pe WhatsApp sau lasă-ne un mesaj mai jos și te căutăm noi.</p>
+  </div>
+</header>
+
+<!-- Cele două acțiuni principale, mari și devreme pe pagină. -->
+<section class="py-5">
+  <div class="container">
+    <div class="row g-3 justify-content-center">
+      <div class="col-12 col-md-auto">
+        <a class="btn btn-primary btn-lg w-100" href="tel:[DE COMPLETAT: telefon]">
+          <svg class="pictograma" aria-hidden="true" focusable="false" style="vertical-align:-.35em"><use href="/assets/img/pictograme.svg#telefon"></use></svg>
+          Sună la [DE COMPLETAT: telefon]
+        </a>
+      </div>
+      <div class="col-12 col-md-auto">
+        <a class="btn btn-accent btn-lg w-100" href="https://wa.me/[DE COMPLETAT: telefon în format 407xxxxxxxx]"
+           target="_blank" rel="noopener">
+          <svg class="pictograma" aria-hidden="true" focusable="false" style="vertical-align:-.35em"><use href="/assets/img/pictograme.svg#whatsapp"></use></svg>
+          Scrie pe WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Datele centrului, pe carduri, ca să se citească dintr-o privire. -->
+<section class="pb-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card-contact">
+          <svg class="pictograma pictograma--mare" aria-hidden="true" focusable="false"><use href="/assets/img/pictograme.svg#telefon"></use></svg>
+          <h2 class="card-contact__titlu">Telefon</h2>
+          <p class="mb-0"><a href="tel:[DE COMPLETAT: telefon]">[DE COMPLETAT: telefon]</a></p>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card-contact">
+          <svg class="pictograma pictograma--mare" aria-hidden="true" focusable="false"><use href="/assets/img/pictograme.svg#plic"></use></svg>
+          <h2 class="card-contact__titlu">E-mail</h2>
+          <p class="mb-0"><a class="email-lung" href="mailto:[DE COMPLETAT: email]">[DE COMPLETAT: email]</a></p>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card-contact">
+          <svg class="pictograma pictograma--mare" aria-hidden="true" focusable="false"><use href="/assets/img/pictograme.svg#harta"></use></svg>
+          <h2 class="card-contact__titlu">Adresă</h2>
+          <p class="mb-0">[DE COMPLETAT: strada, numărul și orașul centrului]</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card-contact">
+          <svg class="pictograma pictograma--mare" aria-hidden="true" focusable="false"><use href="/assets/img/pictograme.svg#clepsidra"></use></svg>
+          <h2 class="card-contact__titlu">Program</h2>
+          <p class="mb-0">[DE COMPLETAT: zilele și orele în care sunteți deschiși]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Formularul. Pe crem, ca să se despartă limpede de restul paginii. -->
+<section class="py-5 bg-crem">
+  <div class="container">
+    <div class="row g-4 g-lg-5">
+      <div class="col-12 col-lg-5">
+        <p class="eticheta-sectiune">Scrie-ne</p>
+        <h2 class="text-brand-lg mb-3">Lasă-ne un mesaj</h2>
+        <p>Spune-ne pe scurt ce te aduce la noi și ce serviciu te interesează. Îți răspundem în
+        cel mai scurt timp, pe telefon sau pe e-mail — cum preferi.</p>
+        <p class="small text-secondary mb-0">Datele pe care ni le lași sunt folosite doar ca să îți
+        răspundem. Nu le dăm nimănui. Detalii în
+        <a href="/politica-de-confidentialitate">politica de confidențialitate</a>.</p>
+      </div>
+
+      <div class="col-12 col-lg-7">
+        <form id="formular-contact" novalidate>
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <label class="form-label" for="cf-nume">Nume <span aria-hidden="true">*</span></label>
+              <input class="form-control" id="cf-nume" name="name" required autocomplete="name">
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label" for="cf-email">E-mail <span aria-hidden="true">*</span></label>
+              <input class="form-control" id="cf-email" name="email" type="email" required autocomplete="email">
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label" for="cf-telefon">Telefon</label>
+              <input class="form-control" id="cf-telefon" name="phone" type="tel" autocomplete="tel">
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label" for="cf-serviciu">Serviciu <span aria-hidden="true">*</span></label>
+              <select class="form-select" id="cf-serviciu" name="subject" required>
+                <option value="">Alege un serviciu</option>
+                <option>Nutriție personalizată</option>
+                <option>Psihonutriție</option>
+                <option>Biorezonanță</option>
+                <option>Chiropractică și masaj terapeutic</option>
+                <option>Medicină tradițională</option>
+                <option>Terapii complementare</option>
+                <option>Echilibrare energetică</option>
+                <option>Consiliere și dezvoltare personală</option>
+                <option>Nu știu încă / altceva</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="cf-mesaj">Mesaj <span aria-hidden="true">*</span></label>
+              <textarea class="form-control" id="cf-mesaj" name="message" rows="5" required></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary btn-lg px-4" type="submit">Trimite mesajul</button>
+            </div>
+          </div>
+          <p id="cf-raspuns" class="mt-3 mb-0" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--
+  Harta.
+
+  Nu punem un iframe Google Maps cât timp nu avem adresa: ar fi o hartă care
+  arată altceva. În plus, un iframe Google pune cookie-uri înainte ca vizitatorul
+  să apuce să accepte ceva, deci va fi încărcat abia după consimțământ, când îl
+  adăugăm.
+-->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-brand-lg mb-4">Unde ne găsești</h2>
+    <div class="harta-lipsa">
+      <p class="mb-0">[DE COMPLETAT: adresa centrului. Când o primim, punem aici harta.]</p>
+    </div>
+  </div>
+</section>

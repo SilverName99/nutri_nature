@@ -229,7 +229,7 @@
   font-family: var(--font-titlu);
   font-size: 1.5rem;
   /*
-   * Cormorant folosește implicit cifre de rând vechi: „1" seamănă cu un I mic,
+   * Garamondul folosește implicit cifre de rând vechi: „1" seamănă cu un I mic,
    * iar „3" coboară sub linie. Frumos într-un text, ambiguu într-un pas numerotat.
    */
   font-variant-numeric: lining-nums;

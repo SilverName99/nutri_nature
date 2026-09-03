@@ -318,8 +318,8 @@ if (trim($designHeaderOutput) !== '' && preg_match($mobileMenuTokenPattern, $des
     $bootstrapVersion = @filemtime(__DIR__ . '/../public/assets/vendor/bootstrap/css/bootstrap.min.css') ?: time();
     $tokensVersion = @filemtime(__DIR__ . '/../public/assets/css/tokens.css') ?: time();
     ?>
-    <link rel="stylesheet" href="/assets/vendor/cormorant-garamond/cormorant-garamond.css">
-    <link rel="stylesheet" href="/assets/vendor/lato/lato.css">
+    <link rel="stylesheet" href="/assets/vendor/eb-garamond/eb-garamond.css">
+    <link rel="stylesheet" href="/assets/vendor/source-sans-3/source-sans-3.css">
     <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css?v=<?= $bootstrapVersion ?>">
     <link rel="stylesheet" href="/assets/css/tokens.css?v=<?= $tokensVersion ?>">
     <?php
