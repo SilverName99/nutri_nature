@@ -1,0 +1,269 @@
+/*
+ * Acasă — NutriNature
+ *
+ * Culorile vin toate din tokens.css. Aici sunt doar formele.
+ */
+
+/* ── Antetul paginii ─────────────────────────────────────────────── */
+
+.antet-acasa {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 520px;
+  padding: 4rem 0;
+  overflow: hidden;
+  background: var(--verde-900);
+}
+
+.antet-acasa__fundal {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Ascunde textul alternativ de ochi, nu și de cititoarele de ecran. */
+  color: transparent;
+}
+
+/*
+ * Voalul.
+ *
+ * 60% negru, nu 55% ca la celălalt proiect: fotografia de aici nu e aleasă
+ * încă, deci pragul trebuie să țină și dacă vine una luminoasă. Verificat pe
+ * hașura de imagine lipsă și pe o fotografie de probă.
+ */
+.antet-acasa::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(14, 27, 14, .82), rgba(14, 27, 14, .55));
+}
+
+/* „::after" este ultimul copil, deci fără nivel explicit voalul ar acoperi textul. */
+.antet-acasa__continut {
+  position: relative;
+  z-index: 1;
+  max-width: 44rem;
+}
+
+.antet-acasa__eticheta {
+  color: var(--accent-pe-inchis);
+  margin-bottom: .75rem;
+}
+
+.antet-acasa__titlu {
+  color: #FFFFFF;
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
+
+.antet-acasa__subtitlu {
+  color: var(--crem);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  max-width: 40ch;
+  margin-bottom: 2rem;
+}
+
+.antet-acasa__actiuni {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+/* Butonul deschis, pentru fundal închis: crem cu text verde — 12,26:1. */
+.btn-alb {
+  --bs-btn-color: var(--verde-800);
+  --bs-btn-bg: var(--crem);
+  --bs-btn-border-color: var(--crem);
+  --bs-btn-hover-color: var(--verde-800);
+  --bs-btn-hover-bg: #FFFFFF;
+  --bs-btn-hover-border-color: #FFFFFF;
+  --bs-btn-active-color: var(--verde-900);
+  --bs-btn-active-bg: #FFFFFF;
+  --bs-btn-active-border-color: #FFFFFF;
+  font-weight: 700;
+}
+
+/* Butonul secundar pe fundal închis: contur auriu, text auriu — 7,41:1. */
+.btn-contur-auriu {
+  --bs-btn-color: var(--auriu-300);
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: var(--auriu-300);
+  --bs-btn-hover-color: var(--verde-900);
+  --bs-btn-hover-bg: var(--auriu-300);
+  --bs-btn-hover-border-color: var(--auriu-300);
+  --bs-btn-active-color: var(--verde-900);
+  --bs-btn-active-bg: var(--auriu-200);
+  --bs-btn-active-border-color: var(--auriu-200);
+  font-weight: 700;
+}
+
+/* ── Măsura textului ─────────────────────────────────────────────── */
+
+/* WCAG 2.1 SC 1.4.8: sub 80 de caractere pe rând. */
+.masura-text { max-width: 52ch; }
+
+/* ── Cardurile de serviciu ───────────────────────────────────────── */
+
+.card-serviciu {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.75rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--auriu-500);
+  text-decoration: none;
+  color: inherit;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.card-serviciu:hover,
+.card-serviciu:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--auriu-400);
+  border-top-color: var(--verde-800);
+  box-shadow: 0 14px 30px rgba(24, 48, 24, .12);
+}
+
+.card-serviciu__titlu {
+  font-size: 1.375rem;
+  color: var(--verde-800);
+  margin-bottom: .75rem;
+}
+
+.card-serviciu__text {
+  color: var(--ink-muted);
+  line-height: 1.6;
+  /* Împinge acțiunea la baza cardului, ca rândurile să se alinieze între ele. */
+  flex: 1 1 auto;
+  margin-bottom: 1.25rem;
+}
+
+.card-serviciu__actiune {
+  font-weight: 700;
+  font-size: .8125rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-accent);
+}
+
+.card-serviciu__actiune::after {
+  content: " →";
+  /* Săgeata nu se citește cu voce tare ca „săgeată dreapta" dacă e decor. */
+  speak: never;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-serviciu { transition: none; }
+  .card-serviciu:hover { transform: none; }
+}
+
+/* ── Banda de valori ─────────────────────────────────────────────── */
+
+.valori {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.valori__item {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  padding-inline: 1rem;
+}
+
+.valori__item + .valori__item {
+  border-left: 1px solid var(--verde-600);
+}
+
+.valori__titlu {
+  font-family: var(--font-titlu);
+  font-size: 1.5rem;
+  color: var(--accent-pe-inchis);
+}
+
+.valori__nota {
+  font-size: .875rem;
+  color: var(--crem);
+}
+
+@media (max-width: 991.98px) {
+  .valori { grid-template-columns: repeat(2, 1fr); }
+  .valori__item + .valori__item { border-left: 0; }
+}
+
+@media (max-width: 575.98px) {
+  .valori { grid-template-columns: 1fr; }
+}
+
+/* ── Fotografia din secțiunea „Despre" ───────────────────────────── */
+
+.poza-incadrata {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  /* Un chenar auriu subțire, decalat — semnătura vizuală din afișe. */
+  outline: 1px solid var(--auriu-500);
+  outline-offset: 12px;
+}
+
+/* Decalajul ar ieși din container pe ecran mic. */
+@media (max-width: 767.98px) {
+  .poza-incadrata { outline-offset: 6px; }
+}
+
+/* ── Pașii ───────────────────────────────────────────────────────── */
+
+.pasi {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: none;
+}
+
+.pasi__numar {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--verde-800);
+  color: var(--crem);
+  font-family: var(--font-titlu);
+  font-size: 1.5rem;
+  /*
+   * Cormorant folosește implicit cifre de rând vechi: „1" seamănă cu un I mic,
+   * iar „3" coboară sub linie. Frumos într-un text, ambiguu într-un pas numerotat.
+   */
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum" 1;
+  margin-bottom: 1rem;
+}
+
+.pasi__titlu {
+  font-size: 1.375rem;
+  color: var(--verde-800);
+  margin-bottom: .5rem;
+}
+
+.pasi__text {
+  color: var(--ink-muted);
+  line-height: 1.6;
+  max-width: 40ch;
+  margin: 0;
+}
+
+@media (max-width: 767.98px) {
+  .pasi { grid-template-columns: 1fr; gap: 2.5rem; }
+}

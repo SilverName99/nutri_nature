@@ -1,0 +1,331 @@
+/*
+ * Tokeni de culoare — NutriNature, centru de medicină integrativă
+ *
+ * Culorile nu sunt alese, ci citite din sigla trimisă de client: verdele
+ * închis #183018, auriul #B48430 și cremul #F6EDDE sunt culorile dominante ale
+ * fișierului, măsurate pixel cu pixel.
+ *
+ * Toate contrastele scrise mai jos sunt calculate după formula WCAG 2.1, nu
+ * estimate din ochi. Pragurile: 4,5:1 pentru text obișnuit, 3:1 pentru text
+ * mare (peste 24px, sau 18,66px îngroșat) și pentru conturul componentelor.
+ *
+ * Capcana acestei palete: auriul arată scump, dar pe crem dă 2,88:1. Nu poate
+ * fi culoare de text. De aceea umplerea, accentul și textul sunt roluri
+ * separate, cu nuanțe diferite — la fel ca la portocaliul de la Grafoanaytis,
+ * doar că aici greșeala ar fi și mai ușor de făcut.
+ */
+
+:root {
+  /* Scala de verde. 800 este verdele siglei. */
+  --verde-050: #F1F8F1;
+  --verde-100: #DDEEDD;
+  --verde-200: #BBDDBB;
+  --verde-300: #8BC58B;
+  --verde-400: #5CAD5C;
+  --verde-500: #448844;
+  --verde-600: #336633;
+  --verde-700: #254B25;
+  --verde-800: #183018;  /* verdele din siglă */
+  --verde-900: #0E1B0E;
+
+  /* Scala de auriu. 500 este auriul siglei. */
+  --auriu-050: #FAF4EB;
+  --auriu-100: #F2E5CF;
+  --auriu-200: #E7D0A6;
+  --auriu-300: #DAB676;
+  --auriu-400: #CF9E4A;
+  --auriu-500: #B48430;  /* auriul din siglă */
+  --auriu-600: #997029;
+  --auriu-700: #7D5C21;
+  --auriu-800: #654A1B;
+  --auriu-900: #4C3814;
+
+  /* Neutre. Cremul este fundalul siglei și al tuturor materialelor. */
+  --crem:       #F6EDDE;
+  --crem-stins: #FBF6EE;
+  --ink:        #1D2A1D;
+  --ink-muted:  #4A554A;
+  --line:       #E2D9C8;
+  /*
+   * Conturul câmpurilor de formular și al comenzilor.
+   *
+   * „--line" este linie de decor: 1,4:1 pe alb, suficient ca să despartă două
+   * suprafețe. WCAG 2.1 SC 1.4.11 cere însă 3:1 pentru conturul unei componente
+   * cu care omul interacționează, altfel un câmp gol nu se vede că e câmp.
+   * Nuanța de mai jos dă 3,97:1 pe alb și 3,42:1 pe crem.
+   */
+  --line-forte: #84806D;
+  --surface:    #FFFFFF;
+  --surface-alt:var(--crem-stins);
+
+  /*
+   * Roluri.
+   *
+   * Spre deosebire de Grafoanaytis, unde umplerea de brand era deschisă și
+   * textul de deasupra închis, aici este invers: banda și butonul sunt verde
+   * închis, iar textul de deasupra este crem. 12,26:1.
+   */
+  --fill-brand:       var(--verde-800);
+  --fill-brand-hover: var(--verde-700);
+  --fill-brand-active:var(--verde-900);
+  --on-fill-brand:    var(--crem);
+
+  /* Accentul auriu: chenare, linii despărțitoare, pictograme. Pe verde-800 dă
+     4,26:1, deci trece și ca text mare, și ca margine de componentă. */
+  --accent:        var(--auriu-500);
+  --accent-pe-inchis: var(--auriu-300);  /* auriu citibil pe verde — 7,41:1 */
+
+  /* Titluri și text mare pe fundal deschis — 14,24:1 pe alb, 12,26:1 pe crem */
+  --text-brand-large: var(--verde-800);
+
+  /* Legături și text mic pe fundal deschis — aceleași valori, cu rezervă */
+  --text-brand:       var(--verde-800);
+  --text-brand-hover: var(--verde-600);
+
+  /* Singurul auriu care poate fi text pe fundal deschis — 6,13:1 pe alb,
+     5,28:1 pe crem. Auriul siglei (#B48430) dă 2,88:1 și nu are voie aici. */
+  --text-accent:      var(--auriu-700);
+
+  --focus-ring: 0 0 0 0.25rem rgba(180, 132, 48, 0.45);
+}
+
+/* Punte către Bootstrap 5, ca .btn-primary / .bg-primary să preia brandul. */
+:root {
+  --bs-primary: var(--verde-800);
+  --bs-primary-rgb: 24, 48, 24;
+  --bs-link-color: var(--text-brand);
+  --bs-link-color-rgb: 24, 48, 24;
+  --bs-link-hover-color: var(--text-brand-hover);
+  --bs-body-bg: var(--surface);
+  --bs-body-color: var(--ink);
+  --bs-border-color: var(--line);
+}
+
+.btn-primary {
+  --bs-btn-color: var(--on-fill-brand);
+  --bs-btn-bg: var(--fill-brand);
+  --bs-btn-border-color: var(--fill-brand);
+  --bs-btn-hover-color: var(--on-fill-brand);
+  --bs-btn-hover-bg: var(--fill-brand-hover);
+  --bs-btn-hover-border-color: var(--fill-brand-hover);
+  --bs-btn-active-color: var(--on-fill-brand);
+  --bs-btn-active-bg: var(--fill-brand-active);
+  --bs-btn-active-border-color: var(--fill-brand-active);
+  --bs-btn-focus-shadow-rgb: 180, 132, 48;
+}
+
+/* Butonul secundar: contur auriu pe fundal deschis, text verde. */
+.btn-accent {
+  --bs-btn-color: var(--verde-800);
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: var(--auriu-500);
+  --bs-btn-hover-color: var(--on-fill-brand);
+  --bs-btn-hover-bg: var(--verde-800);
+  --bs-btn-hover-border-color: var(--verde-800);
+  --bs-btn-active-color: var(--on-fill-brand);
+  --bs-btn-active-bg: var(--verde-900);
+  --bs-btn-active-border-color: var(--verde-900);
+  --bs-btn-focus-shadow-rgb: 180, 132, 48;
+}
+
+/* Secțiunile pe fundal de brand. */
+.bg-brand { background-color: var(--fill-brand); color: var(--on-fill-brand); }
+.bg-brand a:not(.btn) { color: var(--accent-pe-inchis); }
+.bg-crem  { background-color: var(--crem); color: var(--ink); }
+
+.text-brand    { color: var(--text-brand); }
+.text-brand-lg { color: var(--text-brand-large); }
+.text-accent   { color: var(--text-accent); }
+
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--verde-800);
+  outline-offset: 2px;
+  box-shadow: var(--focus-ring);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Tipografie
+   ══════════════════════════════════════════════════════════════════ */
+
+/*
+ * Sigla scrie „NutriNature" cu o serifă clasică, cu contrast mare între plin
+ * și subțire. Cormorant Garamond este cea mai apropiată dintre serifele libere
+ * și se potrivește tonului: centru de sănătate, nu cabinet medical.
+ *
+ * Corpul textului rămâne sans, altfel pagina devine greu de citit pe telefon.
+ * Lato are diacriticele românești complete și o formă caldă, potrivită.
+ *
+ * Ambele sunt servite de pe serverul nostru: nicio cerere către Google, deci
+ * nicio adresă IP de vizitator trimisă în afară fără temei.
+ */
+
+:root {
+  --font-titlu: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-baza:  Lato, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --nav-culoare: var(--verde-800);
+}
+
+body {
+  font-family: var(--font-baza);
+  font-size: 16px;
+  color: var(--ink);
+}
+
+h1, h2, h3, h4, .navbar-brand {
+  font-family: var(--font-titlu);
+  font-weight: 600;
+  letter-spacing: .01em;
+}
+
+/*
+ * Cormorant are ochiul literei mic pentru corpul lui nominal: la aceeași
+ * valoare în px arată vizibil mai mic decât Lato. Titlurile primesc de aceea
+ * un pas în plus, ca ierarhia să se vadă.
+ */
+h1, .h1 { font-size: clamp(2.4rem, 1.6rem + 3vw, 4rem); line-height: 1.08; }
+h2, .h2 { font-size: clamp(1.9rem, 1.4rem + 2vw, 3rem);  line-height: 1.15; }
+h3, .h3 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);  line-height: 1.2; }
+
+/* Titlurile mici de secțiune rămân sans: sunt etichete, nu titluri. */
+h5, h6, .eticheta-sectiune {
+  font-family: var(--font-baza);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: .8125rem;
+  color: var(--text-accent);
+}
+
+/* Meniul principal */
+.navbar-nav .nav-link {
+  font-family: var(--font-baza);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: .875rem;
+  letter-spacing: .06em;
+  color: var(--nav-culoare);
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus-visible {
+  color: var(--text-accent);
+}
+
+/*
+ * Pagina curentă.
+ *
+ * Auriul siglei ar fi fost alegerea evidentă, dar pe alb dă 3,34:1 — sub prag
+ * pentru un text de 14px. Semnalul îl dau linia aurie de dedesubt, care este
+ * decor, și auriul închis, care trece pragul.
+ */
+.navbar-nav .nav-link.active {
+  color: var(--text-accent);
+  box-shadow: inset 0 -2px 0 var(--auriu-500);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Corecturi generale, păstrate de la proiectul anterior
+   ══════════════════════════════════════════════════════════════════ */
+
+/*
+ * Imagini care încă nu există pe server.
+ *
+ * Site-ul se construiește înaintea ședinței foto. Un dreptunghi discret arată
+ * a machetă în lucru; pictograma de imagine ruptă arată a site stricat.
+ */
+.imagine-lipsa {
+  width: 100%;
+  height: 100%;
+  min-height: 120px;
+  object-fit: cover;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--crem-stins), var(--crem-stins) 14px,
+    #EFE7DA 14px, #EFE7DA 28px
+  );
+}
+
+/*
+ * Măsura textului.
+ *
+ * WCAG 2.1 SC 1.4.8 cere text de corp sub 80 de caractere pe rând. Unitatea
+ * „ch" este lățimea cifrei zero, mai lată decât caracterul mediu dintr-un text
+ * românesc, deci 54ch înseamnă în jur de 75 de caractere reale.
+ */
+.custom-page-content .lead { max-width: 48ch; }
+.custom-page-content p     { max-width: 54ch; }
+
+/* Fără asta, un text centrat rămâne lipit la stânga când primește max-width. */
+.custom-page-content .text-center p,
+.custom-page-content .text-center .lead { margin-inline: auto; }
+
+.custom-page-content p:not(.small):not(.mb-0) { line-height: 1.65; }
+
+/*
+ * Contrast.
+ *
+ * Bootstrap dă .text-secondary culoarea #6C757D, adică 4,69:1 pe alb — exact
+ * la limita AA, și sub prag pe fundal crem. Tokenul propriu urcă la 7,81:1
+ * pe alb și 6,73:1 pe crem.
+ */
+.text-secondary { color: var(--ink-muted) !important; }
+
+/* Adresele de email nu au unde să se rupă și ies din coloană pe ecran îngust. */
+.email-lung { overflow-wrap: anywhere; }
+
+/* Câmpurile de formular folosesc conturul tare, nu linia de decor. */
+.form-control,
+.form-select,
+.form-check-input {
+  border-color: var(--line-forte);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--verde-600);
+  box-shadow: var(--focus-ring);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Butonul de WhatsApp, prezent pe toate paginile
+   ══════════════════════════════════════════════════════════════════ */
+
+/*
+ * Verdele WhatsApp (#25D366) este al lor, nu al nostru, și pe alb dă 1,9:1.
+ * De aceea butonul este cerc verde de brand cu pictograma crem — 12,26:1 — și
+ * se recunoaște după formă, nu după culoarea altcuiva.
+ *
+ * 56px de diametru, peste minimul de 44px cerut de WCAG 2.1 SC 2.5.8.
+ */
+.whatsapp-plutitor {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1030;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--verde-800);
+  color: var(--crem);
+  box-shadow: 0 6px 20px rgba(14, 27, 14, .35);
+  transition: transform .18s ease, background-color .18s ease;
+}
+
+.whatsapp-plutitor:hover,
+.whatsapp-plutitor:focus-visible {
+  background: var(--verde-700);
+  color: var(--crem);
+  transform: translateY(-2px);
+}
+
+/* Pe ecrane înguste stă mai sus, ca să nu acopere ultimul rând din subsol. */
+@media (max-width: 575.98px) {
+  .whatsapp-plutitor { right: .75rem; bottom: .75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-plutitor { transition: none; }
+  .whatsapp-plutitor:hover { transform: none; }
+}

@@ -1,0 +1,189 @@
+<!--
+  Acasă — NutriNature
+
+  Structura urmează site-ul dat ca reper de client (sananobilis.ro): antet cu
+  telefonul mereu la vedere, serviciile imediat sub el, apoi despre centru și
+  articole. Hainele sunt însă ale lui: crem, verde închis și auriu, culorile
+  siglei, nu albastrul modelului.
+
+  Textele nu sunt inventate: sunt luate din afișele trimise de client. Acolo
+  unde nu avem informația — adresă, telefon, fotografii — rămâne [DE COMPLETAT],
+  ca scripts/lipsuri.php să le adune în documentul pentru client.
+-->
+
+<!-- Antetul paginii: fotografie pe toată lățimea, mesajul centrat -->
+<header id="antet-acasa" class="antet-acasa">
+  <img class="antet-acasa__fundal" src="/uploads/gallery/hero-nutrinature.webp"
+       alt="[DE COMPLETAT: fotografie din centrul NutriNature]" loading="eager" fetchpriority="high">
+  <div class="container antet-acasa__continut">
+    <p class="eticheta-sectiune antet-acasa__eticheta">Centru de medicină integrativă</p>
+    <h1 class="antet-acasa__titlu">Hrana pentru corp.<br>Claritate pentru minte.<br>Energie pentru viață.</h1>
+    <p class="antet-acasa__subtitlu">Nutriție personalizată și terapii naturale, într-un singur loc.
+    Fiecare corp este unic — planul tău ar trebui să fie la fel.</p>
+    <div class="antet-acasa__actiuni">
+      <a class="btn btn-primary btn-lg" href="tel:[DE COMPLETAT: telefon]">Sună la [DE COMPLETAT: telefon]</a>
+      <a class="btn btn-lg btn-alb" href="https://wa.me/[DE COMPLETAT: telefon în format 407xxxxxxxx]"
+         target="_blank" rel="noopener">Scrie pe WhatsApp</a>
+    </div>
+  </div>
+</header>
+
+<!-- Serviciile. Cele șapte de pe afișul-umbrelă, în ordinea de acolo. -->
+<section id="servicii-acasa" class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <p class="eticheta-sectiune">Ce facem</p>
+      <h2 class="text-brand-lg mb-3">Șapte drumuri către același echilibru</h2>
+      <p class="mx-auto masura-text">Lucrăm integrativ: nutriția, terapia manuală și echilibrul
+      emoțional nu sunt cutii separate, ci părți ale aceluiași plan, gândit pentru tine.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a class="card-serviciu" href="/servicii/nutritie-personalizata">
+          <h3 class="card-serviciu__titlu">Nutriție personalizată</h3>
+          <p class="card-serviciu__text">Plan alimentar adaptat ție, cu obiective realiste,
+          analiză corporală și susținere constantă. Nu o dietă — un plan.</p>
+          <span class="card-serviciu__actiune">Află mai mult</span>
+        </a>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a class="card-serviciu" href="/servicii/psihonutritie">
+          <h3 class="card-serviciu__titlu">Psihonutriție</h3>
+          <p class="card-serviciu__text">Echilibru între minte, emoții și alimentație, pentru
+          momentele în care mâncarea a devenit răspuns la altceva decât foamea.</p>
+          <span class="card-serviciu__actiune">Află mai mult</span>
+        </a>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a class="card-serviciu" href="/servicii/biorezonanta">
+          <h3 class="card-serviciu__titlu">Biorezonanță</h3>
+          <p class="card-serviciu__text">Evaluare non-invazivă a stării de echilibru a
+          organismului, cu tehnologie modernă. Rapidă, blândă, fără medicamente.</p>
+          <span class="card-serviciu__actiune">Află mai mult</span>
+        </a>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a class="card-serviciu" href="/servicii/chiropractica-si-masaj-terapeutic">
+          <h3 class="card-serviciu__titlu">Chiropractică și masaj terapeutic</h3>
+          <p class="card-serviciu__text">Aliniem corpul, eliberăm tensiunile și redăm echilibrul
+          natural. Relaxare musculară și circulație mai bună.</p>
+          <span class="card-serviciu__actiune">Află mai mult</span>
+        </a>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a class="card-serviciu" href="/servicii/medicina-traditionala">
+          <h3 class="card-serviciu__titlu">Medicină tradițională indiană și românească</h3>
+          <p class="card-serviciu__text">Două tradiții, un singur scop: plante medicinale,
+          remedii naturale și echilibru minte–corp–spirit.</p>
+          <span class="card-serviciu__actiune">Află mai mult</span>
+        </a>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a class="card-serviciu" href="/servicii/terapii-complementare">
+          <h3 class="card-serviciu__titlu">Terapii complementare</h3>
+          <p class="card-serviciu__text">Reiki, Access Bars® și terapia eliberării emoționale —
+          metode blânde care completează și susțin restul planului.</p>
+          <span class="card-serviciu__actiune">Află mai mult</span>
+        </a>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a class="card-serviciu" href="/servicii/consiliere-si-dezvoltare-personala">
+          <h3 class="card-serviciu__titlu">Consiliere și dezvoltare personală</h3>
+          <p class="card-serviciu__text">Un spațiu în care îți limpezești obiectivele și găsești
+          resursele să le duci mai departe.</p>
+          <span class="card-serviciu__actiune">Află mai mult</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--
+  Valorile, exact cele cinci de pe banda verde a afișului-umbrelă. Aici banda e
+  verde și textul crem: 12,26:1.
+-->
+<section id="valori" class="bg-brand py-5">
+  <div class="container">
+    <ul class="valori">
+      <li class="valori__item"><span class="valori__titlu">Natural</span><span class="valori__nota">și personalizat</span></li>
+      <li class="valori__item"><span class="valori__titlu">Abordare</span><span class="valori__nota">integrativă</span></li>
+      <li class="valori__item"><span class="valori__titlu">Echilibru</span><span class="valori__nota">corp • minte • suflet</span></li>
+      <li class="valori__item"><span class="valori__titlu">Profesionalism</span><span class="valori__nota">și empatie</span></li>
+      <li class="valori__item"><span class="valori__titlu">Rezultate</span><span class="valori__nota">durabile</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Despre centru, pe scurt -->
+<section id="despre-scurt" class="py-5">
+  <div class="container">
+    <div class="row g-4 g-lg-5 align-items-center">
+      <div class="col-12 col-lg-6">
+        <p class="eticheta-sectiune">Despre noi</p>
+        <h2 class="text-brand-lg mb-3">Corpul tău comunică.<br>Noi te ajutăm să îl asculți.</h2>
+        <p>[DE COMPLETAT: două-trei fraze despre cum a apărut centrul, de când funcționează și
+        ce vă deosebește. Textul acesta este primul lucru pe care îl citește cineva care vă caută
+        pe internet.]</p>
+        <p>[DE COMPLETAT: o frază despre echipă — câți sunteți, ce pregătire aveți.]</p>
+        <a class="btn btn-accent" href="/despre-noi">Despre centru</a>
+      </div>
+      <div class="col-12 col-lg-6">
+        <img class="poza-incadrata" src="/uploads/gallery/despre-centru.webp"
+             alt="[DE COMPLETAT: fotografie din cabinet sau din sala de terapie]" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cum se desfășoară o colaborare -->
+<section id="cum-lucram" class="py-5 bg-crem">
+  <div class="container">
+    <div class="text-center mb-5">
+      <p class="eticheta-sectiune">Cum lucrăm</p>
+      <h2 class="text-brand-lg mb-0">Trei pași, fără complicații</h2>
+    </div>
+    <ol class="pasi">
+      <li class="pasi__item">
+        <span class="pasi__numar">1</span>
+        <h3 class="pasi__titlu">Ne suni</h3>
+        <p class="pasi__text">Ne spui pe scurt ce te aduce la noi și stabilim împreună ziua și ora.
+        Poți scrie și pe WhatsApp, dacă îți e mai la îndemână.</p>
+      </li>
+      <li class="pasi__item">
+        <span class="pasi__numar">2</span>
+        <h3 class="pasi__titlu">Ne vedem la centru</h3>
+        <p class="pasi__text">Prima întâlnire este de ascultat: istoric, obiceiuri, obiective.
+        De aici iese planul, nu dintr-un șablon.</p>
+      </li>
+      <li class="pasi__item">
+        <span class="pasi__numar">3</span>
+        <h3 class="pasi__titlu">Mergem mai departe împreună</h3>
+        <p class="pasi__text">Planul se ajustează pe parcurs, în funcție de cum răspunde corpul tău.
+        Susținerea nu se termină la prima ședință.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!--
+  Aici va veni banda cu articole din blog, prin {{blog_posts}}.
+
+  Deocamdată nu există niciun articol, iar placeholder-ul întoarce gol: ar fi
+  rămas un titlu „De citit" cu nimic sub el, ceea ce arată a pagină stricată.
+  Se pune înapoi când clientul scrie primul articol.
+-->
+
+<!-- Îndemnul final. Aceleași două acțiuni ca în antet: telefon și WhatsApp. -->
+<section id="indemn" class="bg-brand py-5">
+  <div class="container text-center">
+    <h2 class="mb-3" style="color: var(--accent-pe-inchis);">Ai grijă de tine, în mod inteligent</h2>
+    <p class="mx-auto masura-text mb-4">Prima discuție nu te obligă la nimic. Sună-ne și vedem
+    împreună de unde începem.</p>
+    <div class="antet-acasa__actiuni justify-content-center">
+      <a class="btn btn-lg btn-alb" href="tel:[DE COMPLETAT: telefon]">Sună la [DE COMPLETAT: telefon]</a>
+      <a class="btn btn-lg btn-contur-auriu" href="https://wa.me/[DE COMPLETAT: telefon în format 407xxxxxxxx]"
+         target="_blank" rel="noopener">Scrie pe WhatsApp</a>
+    </div>
+  </div>
+</section>
