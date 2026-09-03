@@ -103,7 +103,9 @@ $footer = <<<'HTML'
         <p class="h4 mb-2" style="color: var(--accent-pe-inchis);">NutriNature</p>
         <p class="mb-3">Centru de medicină integrativă. Nutriție personalizată, terapii
         naturale și echilibru între corp, minte și emoții.</p>
-        <p class="fst-italic mb-0" style="color: var(--accent-pe-inchis);">Hrana pentru corp. Claritate pentru minte. Energie pentru viață.</p>
+        <p class="fst-italic mb-1" style="color: var(--accent-pe-inchis);">Hrana pentru corp. Claritate pentru minte. Energie pentru viață.</p>
+        <!-- A doua semnătură a brandului, cea de pe afișele de servicii. -->
+        <p class="fst-italic mb-0" style="color: var(--accent-pe-inchis);">Be beautiful… be you.</p>
       </div>
       <div class="col-6 col-md-3">
         <p class="fw-bold mb-2">Navigare</p>

@@ -659,3 +659,28 @@ h5, h6, .eticheta-sectiune {
   font-feature-settings: "lnum" 1;
   margin-bottom: 1rem;
 }
+
+/*
+ * Citatul scris de mână de pe afișe.
+ *
+ * Pe hârtie e caligrafie; pe web folosim italicul serifei, nu o a treia
+ * familie de font. Aceeași greutate vizuală, jumătate din costul de încărcare.
+ */
+.citat-afis {
+  font-family: var(--font-titlu);
+  font-style: italic;
+  font-size: clamp(1.35rem, 1.1rem + .9vw, 1.9rem);
+  line-height: 1.35;
+  color: var(--text-accent);
+  max-width: 34ch;
+  margin: 2rem 0 0;
+}
+
+.citat-afis::before {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 1px;
+  background: var(--auriu-500);
+  margin-bottom: 1rem;
+}
