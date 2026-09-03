@@ -45,12 +45,17 @@ adresă IP de vizitator trimisă în afară.
 
 ```bash
 cp .env.example .env          # completează datele bazei
-mysql -u root nutrinature < database/schema.sql
-mysql -u root nutrinature < database/seed.sql
+php scripts/install.php       # structura bazei + contul de administrator
+mysql -u UTILIZATOR -p BAZA < database/seed.sql   # folderele de galerie
 php scripts/seed-design.php   # antet, meniu, subsol
 php scripts/seed-pagini.php   # paginile din database/pagini/
 php -S 127.0.0.1:8080 -t public
 ```
+
+`scripts/install.php` citește `.env`, încarcă `database/schema.sql`, rulează
+migrările și creează administratorul din `ADMIN_DEFAULT_EMAIL` și
+`ADMIN_DEFAULT_PASSWORD`. Se poate rula de câte ori e nevoie: nu strică ce
+există deja.
 
 `.env` nu intră niciodată în git.
 
