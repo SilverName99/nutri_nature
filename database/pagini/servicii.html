@@ -1,0 +1,134 @@
+<!--
+  Servicii — NutriNature
+
+  Cele opt servicii, în ordinea de pe afișul-umbrelă. Textele scurte de pe
+  carduri sunt rezumatele din afișele fiecărui serviciu.
+
+  Stilul cardurilor (.card-serviciu) stă în acasa.css, care se încarcă doar pe
+  prima pagină, deci aici cardurile sunt refăcute cu utilitare Bootstrap și cu
+  clasele din tokens.css. Nu merită un al doilea fișier CSS pentru asta.
+-->
+
+<header class="antet-serviciu">
+  <div class="container antet-serviciu__continut">
+    <p class="eticheta-sectiune antet-serviciu__eticheta">Centru de medicină integrativă</p>
+    <h1>Serviciile noastre</h1>
+    <p class="antet-serviciu__lead">Lucrăm integrativ: nutriția, terapia manuală și echilibrul
+    emoțional nu sunt cutii separate, ci părți ale aceluiași plan, gândit pentru tine.</p>
+  </div>
+</header>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4">
+
+      <div class="col-12 col-md-6 col-xl-4">
+        <a class="lista-servicii__card" href="/servicii/nutritie-personalizata">
+          <img class="lista-servicii__poza" src="/assets/img/afise/serviciu-nutritie-personalizata.webp"
+               alt="Bol cu quinoa, năut, avocado și legume proaspete" loading="lazy">
+          <svg class="pictograma pictograma--mare mb-2" aria-hidden="true" focusable="false"><use href="/assets/img/pictograme.svg#bol-cu-frunze"></use></svg>
+          <h2 class="h4 text-brand-lg mb-2">Nutriție personalizată</h2>
+          <p class="mb-3">Nu este o dietă, este un plan creat special pentru tine: analiză
+          corporală, obiective clare, plan alimentar adaptat și suport constant.</p>
+          <span class="eticheta-sectiune">Vezi serviciul →</span>
+        </a>
+      </div>
+
+      <div class="col-12 col-md-6 col-xl-4">
+        <a class="lista-servicii__card" href="/servicii/psihonutritie">
+          <span class="lista-servicii__poza lista-servicii__poza--goala" aria-hidden="true"></span>
+          <svg class="pictograma pictograma--mare mb-2" aria-hidden="true" focusable="false"><use href="/assets/img/pictograme.svg#cap-si-frunza"></use></svg>
+          <h2 class="h4 text-brand-lg mb-2">Psihonutriție</h2>
+          <p class="mb-3">Echilibru între minte, emoții și alimentație — partea pe care un plan
+          alimentar singur nu o rezolvă.</p>
+          <span class="eticheta-sectiune">Vezi serviciul →</span>
+        </a>
+      </div>
+
+      <div class="col-12 col-md-6 col-xl-4">
+        <a class="lista-servicii__card" href="/servicii/biorezonanta">
+          <img class="lista-servicii__poza" src="/assets/img/afise/serviciu-biorezonanta.webp"
+               alt="Aparatul de biorezonanță, cu harta corpului pe ecran" loading="lazy">
+          <svg class="pictograma pictograma--mare mb-2" aria-hidden="true" focusable="false"><use href="/assets/img/pictograme.svg#unde"></use></svg>
+          <h2 class="h4 text-brand-lg mb-2">Biorezonanță</h2>
+          <p class="mb-3">Tehnologie modernă pentru echilibrul tău natural. Precisă,
+          non-invazivă, fără efecte secundare.</p>
+          <span class="eticheta-sectiune">Vezi serviciul →</span>
+        </a>
+      </div>
+
+      <div class="col-12 col-md-6 col-xl-4">
+        <a class="lista-servicii__card" href="/servicii/chiropractica-si-masaj-terapeutic">
+          <img class="lista-servicii__poza" src="/assets/img/afise/serviciu-chiropractica.webp"
+               alt="Terapeut NutriNature lucrând asupra umerilor unei paciente" loading="lazy">
+          <svg class="pictograma pictograma--mare mb-2" aria-hidden="true" focusable="false"><use href="/assets/img/pictograme.svg#coloana"></use></svg>
+          <h2 class="h4 text-brand-lg mb-2">Chiropractică și masaj terapeutic</h2>
+          <p class="mb-3">Aliniem corpul, eliberăm tensiunile, relaxăm musculatura și susținem
+          procesul natural de vindecare.</p>
+          <span class="eticheta-sectiune">Vezi serviciul →</span>
+        </a>
+      </div>
+
+      <div class="col-12 col-md-6 col-xl-4">
+        <a class="lista-servicii__card" href="/servicii/medicina-traditionala">
+          <img class="lista-servicii__poza" src="/assets/img/afise/serviciu-medicina-traditionala.webp"
+               alt="Ulcior tradițional românesc, pictat, cu un buchet de mușețel" loading="lazy">
+          <svg class="pictograma pictograma--mare mb-2" aria-hidden="true" focusable="false"><use href="/assets/img/pictograme.svg#mojar"></use></svg>
+          <h2 class="h4 text-brand-lg mb-2">Medicină tradițională indiană și românească</h2>
+          <p class="mb-3">Două tradiții, un singur scop: plante medicinale, remedii naturale și
+          echilibru minte–corp–spirit.</p>
+          <span class="eticheta-sectiune">Vezi serviciul →</span>
+        </a>
+      </div>
+
+      <div class="col-12 col-md-6 col-xl-4">
+        <a class="lista-servicii__card" href="/servicii/terapii-complementare">
+          <img class="lista-servicii__poza" src="/assets/img/afise/serviciu-terapii-complementare.webp"
+               alt="Bol tibetan, lumânare aprinsă și pietre de bazalt" loading="lazy">
+          <svg class="pictograma pictograma--mare mb-2" aria-hidden="true" focusable="false"><use href="/assets/img/pictograme.svg#maini"></use></svg>
+          <h2 class="h4 text-brand-lg mb-2">Terapii complementare</h2>
+          <p class="mb-3">Reiki, Access Bars® și terapia eliberării emoționale — metode blânde
+          care completează, susțin și accelerează restul planului.</p>
+          <span class="eticheta-sectiune">Vezi serviciul →</span>
+        </a>
+      </div>
+
+      <div class="col-12 col-md-6 col-xl-4">
+        <a class="lista-servicii__card" href="/servicii/echilibrare-energetica">
+          <img class="lista-servicii__poza" src="/assets/img/afise/serviciu-echilibrare-energetica.webp"
+               alt="Frunze verzi și pietre de râu suprapuse" loading="lazy">
+          <svg class="pictograma pictograma--mare mb-2" aria-hidden="true" focusable="false"><use href="/assets/img/pictograme.svg#lotus"></use></svg>
+          <h2 class="h4 text-brand-lg mb-2">Echilibrare energetică</h2>
+          <p class="mb-3">Armonie pentru corp, minte și emoții. Reduce stresul, crește energia și
+          reface conexiunea între corp, minte și spirit.</p>
+          <span class="eticheta-sectiune">Vezi serviciul →</span>
+        </a>
+      </div>
+
+      <div class="col-12 col-md-6 col-xl-4">
+        <a class="lista-servicii__card" href="/servicii/consiliere-si-dezvoltare-personala">
+          <span class="lista-servicii__poza lista-servicii__poza--goala" aria-hidden="true"></span>
+          <svg class="pictograma pictograma--mare mb-2" aria-hidden="true" focusable="false"><use href="/assets/img/pictograme.svg#dialog"></use></svg>
+          <h2 class="h4 text-brand-lg mb-2">Consiliere și dezvoltare personală</h2>
+          <p class="mb-3">Un spațiu în care îți limpezești obiectivele și găsești resursele să le
+          duci mai departe.</p>
+          <span class="eticheta-sectiune">Vezi serviciul →</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="indemn-serviciu">
+  <div class="container text-center">
+    <h2 class="text-brand-lg mb-3">Nu știi de unde să începi?</h2>
+    <p class="mx-auto mb-4" style="max-width: 48ch;">Sună-ne și îți spunem noi ce ți se potrivește.
+    Prima discuție nu te obligă la nimic.</p>
+    <div class="indemn-serviciu__actiuni">
+      <a class="btn btn-primary btn-lg" href="tel:[DE COMPLETAT: telefon]">Sună la [DE COMPLETAT: telefon]</a>
+      <a class="btn btn-accent btn-lg" href="https://wa.me/[DE COMPLETAT: telefon în format 407xxxxxxxx]"
+         target="_blank" rel="noopener">Scrie pe WhatsApp</a>
+    </div>
+  </div>
+</section>

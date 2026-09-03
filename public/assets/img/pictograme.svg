@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<!--
+  Pictogramele NutriNature.
+
+  Afișele clientului au un limbaj de iconițe consecvent: linie subțire aurie,
+  desen simplu, fără umplere. Decupate din afiș ar fi ieșit imagini de 60 de
+  pixeli, cu fundal crem lipit de ele și imposibil de recolorat. Redesenate ca
+  SVG, sunt curate la orice mărime, iau culoarea textului din jur („currentColor")
+  și cântăresc câțiva kiloocteți la un loc.
+
+  Se folosesc așa:
+      <svg class="pictograma" aria-hidden="true"><use href="/assets/img/pictograme.svg#frunza"></use></svg>
+
+  Toate au caseta 24x24 și grosimea liniei 1.5, ca să arate ca o familie.
+-->
+<defs>
+  <g id="baza" fill="none" stroke="currentColor" stroke-width="1.5"
+     stroke-linecap="round" stroke-linejoin="round"></g>
+</defs>
+
+<symbol id="frunza" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Frunză</title>
+  <path d="M20 4c0 8-5 13-12 13H5c0-8 5-13 12-13h3z"/>
+  <path d="M4 20c3-4 6-6 10-8"/>
+</symbol>
+
+<symbol id="bol-cu-frunze" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Bol cu plante</title>
+  <path d="M3 13h18a9 9 0 0 1-9 8 9 9 0 0 1-9-8z"/>
+  <path d="M12 10c0-3 2-5 5-5 0 3-2 5-5 5z"/>
+  <path d="M12 10c0-2.5-1.7-4.5-4.5-4.5C7.5 8 9.4 10 12 10z"/>
+  <path d="M12 10v3"/>
+</symbol>
+
+<symbol id="coloana" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Coloană vertebrală</title>
+  <path d="M12 3v18"/>
+  <path d="M9 5.5h6M8.5 9h7M8.5 12.5h7M9 16h6M9.5 19h5"/>
+</symbol>
+
+<symbol id="maini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Mâini</title>
+  <path d="M7 20V9.5a1.5 1.5 0 0 1 3 0V13"/>
+  <path d="M10 12V7.5a1.5 1.5 0 0 1 3 0V12"/>
+  <path d="M13 12V9a1.5 1.5 0 0 1 3 0v5.5c0 3.6-2 5.5-4.8 5.5H10c-1.9 0-3-1.1-3-3"/>
+</symbol>
+
+<symbol id="mojar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Mojar și pistil</title>
+  <path d="M4 12h16a8 8 0 0 1-8 8 8 8 0 0 1-8-8z"/>
+  <path d="M9 20h6"/>
+  <path d="M15 3l-4 8"/>
+  <circle cx="16" cy="3.5" r="1.4"/>
+</symbol>
+
+<symbol id="copac" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copac</title>
+  <path d="M12 21v-7"/>
+  <path d="M12 14 8.5 10.5M12 16.5l3.5-3.5"/>
+  <circle cx="12" cy="7.5" r="4.5"/>
+</symbol>
+
+<symbol id="unde" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Unde</title>
+  <path d="M2 12c1.6-4 3.2-6 4.8-6S9.9 8 11.5 12s3.2 6 4.8 6 3.2-2 4.8-6"/>
+</symbol>
+
+<symbol id="cap-si-frunza" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Minte și alimentație</title>
+  <path d="M20 12.5c0 4.7-3.6 8-8 8-1 0-2-.2-2.9-.5L5 21.5l1.2-3.4A8 8 0 0 1 4 12.5C4 7.8 7.6 4 12 4s8 3.8 8 8.5z"/>
+  <path d="M15 9.5c0 3-1.7 4.8-4.4 4.8 0-3 1.7-4.8 4.4-4.8z"/>
+  <path d="M9 15c1-1.2 2-2 3.2-2.6"/>
+</symbol>
+
+<symbol id="dialog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Discuție</title>
+  <path d="M20 11.5c0 3.6-3.6 6.5-8 6.5-.9 0-1.8-.1-2.6-.4L4.5 20l1.3-3A6.6 6.6 0 0 1 4 11.5C4 7.9 7.6 5 12 5s8 2.9 8 6.5z"/>
+  <path d="M9 10.5h6M9 13.5h4"/>
+</symbol>
+
+<symbol id="inima-in-palma" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Grijă</title>
+  <path d="M12 10.8 10.6 9.5a1.9 1.9 0 0 1 2.7-2.7l.7.7.7-.7a1.9 1.9 0 0 1 2.7 2.7L12 14.5"/>
+  <path d="M3 14c2.5 0 4 1.5 6 3.5 1.4 1.4 3 2 5 2 3.5 0 6-2 7-4"/>
+</symbol>
+
+<symbol id="lotus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Echilibru</title>
+  <path d="M12 19c-2.5 0-4.5-2.4-4.5-6.5C7.5 8.4 9.5 6 12 6s4.5 2.4 4.5 6.5C16.5 16.6 14.5 19 12 19z"/>
+  <path d="M12 19c-4 0-7-2-8.5-5 3-1.4 5.6-.9 7.6 1.4"/>
+  <path d="M12 19c4 0 7-2 8.5-5-3-1.4-5.6-.9-7.6 1.4"/>
+</symbol>
+
+<symbol id="scut" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Imunitate</title>
+  <path d="M12 21c4.7-1.9 7-5.4 7-10.5V5.5L12 3 5 5.5v5c0 5.1 2.3 8.6 7 10.5z"/>
+  <path d="m9 11.5 2 2 4-4"/>
+</symbol>
+
+<symbol id="energie" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Energie</title>
+  <path d="M13 3 5.5 13.5H11L10 21l7.5-10.5H12L13 3z"/>
+</symbol>
+
+<symbol id="silueta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Vitalitate</title>
+  <circle cx="12" cy="4.6" r="2.1"/>
+  <path d="M12 7v7"/>
+  <path d="M12 9 7 5.5M12 9l5-3.5"/>
+  <path d="M12 14l-3 7M12 14l3 7"/>
+</symbol>
+
+<symbol id="clepsidra" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Timp</title>
+  <path d="M7 3h10M7 21h10"/>
+  <path d="M8 3v3.5c0 2 4 3.8 4 5.5 0-1.7 4-3.5 4-5.5V3"/>
+  <path d="M8 21v-3.5c0-2 4-3.8 4-5.5 0 1.7 4 3.5 4 5.5V21"/>
+</symbol>
+
+<symbol id="telefon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Telefon</title>
+  <path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.2 2.2z"/>
+</symbol>
+</svg>

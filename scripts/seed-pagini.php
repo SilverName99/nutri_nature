@@ -54,6 +54,7 @@ const PAGINI = [
     'servicii__chiropractica-si-masaj-terapeutic' => 'Chiropractică și masaj terapeutic',
     'servicii__medicina-traditionala' => 'Medicină tradițională indiană și românească',
     'servicii__terapii-complementare' => 'Terapii complementare',
+    'servicii__echilibrare-energetica' => 'Echilibrare energetică',
     'servicii__consiliere-si-dezvoltare-personala' => 'Consiliere și dezvoltare personală',
     'programare' => 'Programare',
     'contact' => 'Contact',

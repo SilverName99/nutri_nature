@@ -204,21 +204,7 @@
   .valori { grid-template-columns: 1fr; }
 }
 
-/* ── Fotografia din secțiunea „Despre" ───────────────────────────── */
-
-.poza-incadrata {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  /* Un chenar auriu subțire, decalat — semnătura vizuală din afișe. */
-  outline: 1px solid var(--auriu-500);
-  outline-offset: 12px;
-}
-
-/* Decalajul ar ieși din container pe ecran mic. */
-@media (max-width: 767.98px) {
-  .poza-incadrata { outline-offset: 6px; }
-}
+/* „.poza-incadrata" s-a mutat în tokens.css: o folosesc și paginile de serviciu. */
 
 /* ── Pașii ───────────────────────────────────────────────────────── */
 

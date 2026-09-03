@@ -329,3 +329,259 @@ h5, h6, .eticheta-sectiune {
   .whatsapp-plutitor { transition: none; }
   .whatsapp-plutitor:hover { transform: none; }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   Paginile de serviciu
+   ══════════════════════════════════════════════════════════════════
+
+   Sunt șapte pagini cu aceeași structură, deci stilul stă aici, o dată,
+   nu în șapte fișiere „servicii__*.css" identice. Fiecare pagină aduce doar
+   textul ei.
+*/
+
+/* Fotografie cu chenar auriu decalat — semnătura vizuală din afișe. */
+.poza-incadrata {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  outline: 1px solid var(--auriu-500);
+  outline-offset: 12px;
+}
+
+/* Decalajul ar ieși din container pe ecran mic. */
+@media (max-width: 767.98px) {
+  .poza-incadrata { outline-offset: 6px; }
+}
+
+.antet-serviciu {
+  position: relative;
+  background: var(--verde-800);
+  color: var(--crem);
+  padding: 3.5rem 0;
+  overflow: hidden;
+}
+
+/*
+ * Frunza aurie din colț. Este desen, deci nu are text alternativ și nu intră
+ * în ordinea de citire: o pun ca fundal, nu ca <img>.
+ */
+.antet-serviciu::after {
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  width: 260px;
+  height: 260px;
+  border: 1px solid var(--auriu-600);
+  border-radius: 50%;
+  opacity: .5;
+  pointer-events: none;
+}
+
+.antet-serviciu__continut { position: relative; z-index: 1; max-width: 46rem; }
+.antet-serviciu__eticheta { color: var(--accent-pe-inchis); margin-bottom: .5rem; }
+.antet-serviciu h1 { color: #FFFFFF; font-weight: 500; margin-bottom: 1rem; }
+.antet-serviciu__lead { font-size: 1.125rem; line-height: 1.6; max-width: 46ch; margin-bottom: 0; }
+
+/* Firimiturile: unde sunt și cum mă întorc. */
+.firimituri {
+  font-size: .8125rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.firimituri a { color: var(--accent-pe-inchis); }
+.firimituri span { color: var(--auriu-200); opacity: .7; }
+
+/* Lista cu bifă aurie, folosită pentru „ce include" și „ce obții". */
+.lista-bifa { list-style: none; margin: 0; padding: 0; }
+
+.lista-bifa li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: .875rem;
+  line-height: 1.6;
+}
+
+.lista-bifa li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .45em;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--auriu-500);
+  border-radius: 50%;
+}
+
+.lista-bifa strong { color: var(--verde-800); display: block; }
+
+/* Etichetele „pentru cine este potrivit". */
+.etichete { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 0; padding: 0; }
+
+.etichete li {
+  padding: .5rem .875rem;
+  border: 1px solid var(--auriu-400);
+  background: var(--crem-stins);
+  color: var(--ink);
+  font-size: .9375rem;
+}
+
+/* Îndemnul de la finalul fiecărei pagini de serviciu. */
+.indemn-serviciu {
+  background: var(--crem);
+  border-top: 3px solid var(--auriu-500);
+  padding: 3rem 0;
+}
+
+.indemn-serviciu__actiuni { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
+
+/* Cardurile din lista de servicii. Aceeași formă ca pe prima pagină, dar
+   disponibile pe orice pagină, nu doar pe „acasa". */
+.lista-servicii__card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.75rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--auriu-500);
+  text-decoration: none;
+  color: inherit;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.lista-servicii__card p { color: var(--ink-muted); line-height: 1.6; flex: 1 1 auto; }
+
+.lista-servicii__card:hover,
+.lista-servicii__card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--auriu-400);
+  border-top-color: var(--verde-800);
+  box-shadow: 0 14px 30px rgba(24, 48, 24, .12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lista-servicii__card { transition: none; }
+  .lista-servicii__card:hover { transform: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Semnele grafice preluate din afișe
+   ══════════════════════════════════════════════════════════════════ */
+
+/*
+ * Pictogramele.
+ *
+ * Sunt redesenate ca SVG, nu decupate din afiș: decupate ar fi ieșit imagini de
+ * 60 de pixeli, cu fundal crem lipit de ele. Așa iau culoarea textului din jur
+ * și rămân curate la orice mărime.
+ */
+.pictograma {
+  width: 1.5em;
+  height: 1.5em;
+  flex: 0 0 auto;
+  color: var(--auriu-500);
+}
+
+.pictograma--mare { width: 2.5em; height: 2.5em; }
+
+/*
+ * Despărțitorul cu frunză.
+ *
+ * Apare pe fiecare afiș, între titlu și conținut: două linii aurii subțiri, cu
+ * o frunză la mijloc. Este semnul lor grafic cel mai des folosit, deci merită
+ * să existe și pe site.
+ */
+.despartitor-frunza {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  color: var(--auriu-500);
+  margin: 1.25rem 0;
+}
+
+.despartitor-frunza::before,
+.despartitor-frunza::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  background: currentColor;
+  opacity: .55;
+}
+
+.despartitor-frunza--centrat { max-width: 18rem; margin-inline: auto; }
+
+/* Pe fundal închis, linia trebuie să fie auriul deschis, altfel dispare. */
+.bg-brand .despartitor-frunza,
+.antet-serviciu .despartitor-frunza { color: var(--auriu-300); }
+
+/*
+ * Medalionul.
+ *
+ * Sigla stă pe afișe într-un cerc cu chenar auriu subțire. Aceeași ramă pentru
+ * fotografiile rotunde de pe site — este ieftin în CSS și leagă paginile de
+ * materialele tipărite.
+ */
+.medalion {
+  border-radius: 50%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  width: 100%;
+  box-shadow: 0 0 0 1px var(--auriu-500), 0 0 0 9px var(--crem), 0 0 0 10px var(--auriu-200);
+}
+
+/* Rândul de valori/beneficii cu pictogramă deasupra, ca banda de jos a afișelor. */
+.insemne {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.insemne__item { display: flex; flex-direction: column; align-items: center; gap: .5rem; }
+.insemne__titlu { font-weight: 700; letter-spacing: .04em; text-transform: uppercase; font-size: .8125rem; }
+.insemne__nota { font-size: .875rem; color: var(--ink-muted); }
+.bg-brand .insemne__nota { color: var(--crem); }
+.bg-brand .insemne__titlu { color: var(--accent-pe-inchis); }
+.bg-brand .pictograma { color: var(--auriu-300); }
+
+/* Fotografie pe toată lățimea containerului, cu chenar auriu ca la .poza-incadrata. */
+.poza-lata {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  outline: 1px solid var(--auriu-500);
+  outline-offset: 10px;
+}
+
+@media (max-width: 767.98px) {
+  .poza-lata { outline-offset: 5px; max-height: 260px; }
+}
+
+/*
+ * Capul cardului de serviciu: fotografia decupată din afiș.
+ *
+ * Decupajele au între 240 și 540 px lățime, deci nu suportă o bandă lată. La
+ * 4:3 și „object-fit: cover" arată curat, iar cardurile rămân de aceeași
+ * înălțime chiar dacă fotografiile au proporții diferite.
+ */
+.lista-servicii__poza {
+  display: block;
+  width: calc(100% + 3.5rem);
+  margin: -1.75rem -1.75rem 1.25rem;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* Serviciile pentru care încă nu avem fotografie. Aceeași hașură ca peste tot. */
+.lista-servicii__poza--goala {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--crem-stins), var(--crem-stins) 14px,
+    #EFE7DA 14px, #EFE7DA 28px
+  );
+}

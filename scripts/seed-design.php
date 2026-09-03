@@ -67,7 +67,14 @@ $header = <<<HTML
 <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top" aria-label="Navigare principală">
   <div class="container">
     <a class="navbar-brand me-0" href="/">
-      <img src="/uploads/gallery/nutrinature-logo.png" alt="NutriNature — centru de medicină integrativă" height="56"
+      <!--
+        Sigla este rotundă, deci pătrată ca fișier: 60px înălțime înseamnă și
+        60px lățime. Rândul „centru de medicină integrativă" din ea nu se poate
+        citi la mărimea asta — de aceea textul alternativ îl spune, iar antetul
+        nu se bazează pe el.
+      -->
+      <img src="/uploads/gallery/nutri-nature-logo.png" alt="NutriNature — centru de medicină integrativă"
+           width="60" height="60"
            onerror="this.replaceWith(document.createTextNode('NutriNature'))">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#meniu-principal"
