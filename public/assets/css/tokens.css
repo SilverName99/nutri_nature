@@ -684,3 +684,42 @@ h5, h6, .eticheta-sectiune {
   background: var(--auriu-500);
   margin-bottom: 1rem;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   Echipa
+   ══════════════════════════════════════════════════════════════════ */
+
+.card-echipa { text-align: center; }
+
+/*
+ * Fotografia de portret, rotundă, cu inelul auriu al siglei.
+ *
+ * Cât timp nu avem pozele echipei, este un cerc hașurat: se vede că lipsește
+ * ceva, nu că e o siluetă gri pusă intenționat.
+ */
+.card-echipa__poza {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto 1rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--crem-stins), var(--crem-stins) 12px,
+    #EFE7DA 12px, #EFE7DA 24px
+  );
+  box-shadow: 0 0 0 1px var(--auriu-500), 0 0 0 8px var(--surface), 0 0 0 9px var(--auriu-200);
+}
+
+.card-echipa__nume {
+  font-size: 1.25rem;
+  color: var(--verde-800);
+  margin-bottom: .25rem;
+}
+
+.card-echipa__rol {
+  font-size: .9375rem;
+  color: var(--ink-muted);
+  margin-bottom: 0;
+}
