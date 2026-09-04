@@ -17,7 +17,19 @@ const {
 } = require('docx');
 
 const caleIntrare = process.argv[2] || 'lipsuri.json';
-const caleIesire = process.argv[3] || 'Grafoanaytis-de-completat.docx';
+const caleIesire = process.argv[3] || 'de-completat.docx';
+
+/*
+ * Numele firmei și domeniul vin din linia de comandă, nu scrise în cod.
+ *
+ * Scriptul a fost folosit întâi la un singur client, deci numele lui era bătut
+ * în trei locuri. La al doilea client, documentul a ieșit cu antetul primului —
+ * exact felul de greșeală pe care o vezi abia după ce ai trimis fișierul.
+ *
+ *   node scripts/document-client.js lipsuri.json iesire.docx "NutriNature" nutrinature.ro
+ */
+const marca = process.argv[4] || 'Site';
+const domeniu = process.argv[5] || '';
 const date = JSON.parse(fs.readFileSync(caleIntrare, 'utf8'));
 
 const PORTOCALIU = 'FFB877';
@@ -39,7 +51,7 @@ const celula = (copii, opt = {}) => new TableCell({
 });
 
 /* Un rând de completat: ce lipsește | unde | loc de scris. */
-function randDeCompletat(unde, ce, exemplu) {
+function randDeCompletat(unde, ce, exemplu, alteLocuri) {
   return new TableRow({
     /*
      * Un rând nu se rupe între pagini. Fără asta, la salt rămânea pe pagina
@@ -48,7 +60,18 @@ function randDeCompletat(unde, ce, exemplu) {
      */
     cantSplit: true,
     children: [
-      celula([p(unde, { bold: true, size: 20 })], { latime: 2400 }),
+      celula([
+        p(unde, { bold: true, size: 20, after: alteLocuri ? 40 : 0 }),
+        /*
+         * Cât timp același lucru se cere o singură dată, omul trebuie totuși să
+         * știe unde se va vedea răspunsul lui — altfel pare că e doar pentru
+         * secțiunea din stânga.
+         */
+        ...(alteLocuri
+          ? [p('apare și în alte ' + alteLocuri + ' locuri pe site',
+                { size: 16, italics: true, color: '6B7280', after: 0 })]
+          : []),
+      ], { latime: 2400 }),
       celula([
         p(ce, { size: 20, after: exemplu ? 60 : 0 }),
         ...(exemplu ? [p(exemplu, { size: 18, italics: true, color: '6B7280', after: 0 })] : []),
@@ -83,7 +106,7 @@ function perechiDeCompletat(texte) {
       continue;
     }
 
-    randuri.push(randDeCompletat(t.sectiune, ce, null));
+    randuri.push(randDeCompletat(t.sectiune, ce, null, (t.alte_locuri || []).length));
   }
 
   return randuri;
@@ -114,7 +137,7 @@ copii.push(
   new Paragraph({
     spacing: { after: 80 },
     border: { bottom: { style: BorderStyle.SINGLE, size: 18, color: PORTOCALIU } },
-    children: [new TextRun({ text: 'GRAFOANAYTIS', bold: true, size: 44, color: INCHIS })],
+    children: [new TextRun({ text: marca.toUpperCase(), bold: true, size: 44, color: INCHIS })],
   }),
   p('Ce mai avem nevoie pentru site', { size: 32, bold: true, after: 240 }),
   p('Site-ul nou este construit și funcționează. Mai jos sunt locurile unde am lăsat spațiu pentru textele și fotografiile dumneavoastră. Nu trebuie completate toate deodată — fiecare rând completat intră pe site.', { after: 160 }),
@@ -160,7 +183,7 @@ date.forEach((pagina, i) => {
       spacing: { after: 60 },
       children: [new TextRun({ text: pagina.titlu, bold: true, size: 30, color: INCHIS })],
     }),
-    p('grafoanaytis.ro' + pagina.slug, { size: 18, color: '6B7280', after: 200 }),
+    p(domeniu + pagina.slug, { size: 18, color: '6B7280', after: 200 }),
   );
 
   if (pagina.texte.length) {
@@ -180,6 +203,7 @@ date.forEach((pagina, i) => {
         f.sectiune,
         f.fisier,
         f.descriere ? 'Arată: ' + f.descriere : null,
+        (f.alte_locuri || []).length,
       )),
     ]));
   }
@@ -208,7 +232,7 @@ copii.push(
 
 const doc = new Document({
   creator: 'Andaxi Web Solutions',
-  title: 'Grafoanaytis — ce mai avem nevoie pentru site',
+  title: marca + ' — ce mai avem nevoie pentru site',
   styles: { default: { document: { run: { font: 'Calibri', size: 22 } } } },
   sections: [{
     properties: { page: { margin: { top: 1000, right: 1000, bottom: 1000, left: 1000 } } },

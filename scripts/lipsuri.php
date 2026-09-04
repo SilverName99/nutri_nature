@@ -47,15 +47,26 @@ $exista = static function (string $url) use ($existente, $radacinaPublica): bool
 };
 
 /* Titlurile paginilor, ca în scriptul de seed. */
-$titluriPagini = [
-    'acasa' => 'Acasă',
-    'companie' => 'Companie',
-    'servicii' => 'Servicii',
-    'produse' => 'Produse',
-    'utilaje' => 'Utilaje',
-    'certificari' => 'Certificări',
-    'contact' => 'Contact',
-];
+/*
+ * Paginile le ia din scripts/seed-pagini.php, nu dintr-o listă scrisă aici.
+ *
+ * La proiectul anterior lista era ținută de mână în amândouă fișierele, și s-a
+ * întâmplat ce era de așteptat: s-au adăugat pagini în seed și inventarul le-a
+ * sărit, deci raporta că nu lipsește nimic pe pagini care erau pline de
+ * marcaje. Un singur loc adevărat.
+ */
+$seed = (string) file_get_contents(__DIR__ . '/seed-pagini.php');
+$titluriPagini = [];
+if (preg_match('/const PAGINI = \[(.*?)\];/s', $seed, $bloc)) {
+    preg_match_all("/'([^']+)'\s*=>\s*'([^']*)'/u", $bloc[1], $randuri, PREG_SET_ORDER);
+    foreach ($randuri as $rand) {
+        $titluriPagini[$rand[1]] = $rand[2];
+    }
+}
+if ($titluriPagini === []) {
+    fwrite(STDERR, "Nu am putut citi lista de pagini din seed-pagini.php.\n");
+    exit(1);
+}
 
 /**
  * Unde se află un marcaj, spus în cuvintele paginii.
@@ -128,7 +139,7 @@ foreach ($titluriPagini as $fisier => $titlu) {
     );
 
     $pagina = [
-        'slug' => $fisier === 'acasa' ? '/' : '/' . $fisier,
+        'slug' => $fisier === 'acasa' ? '/' : '/' . str_replace('__', '/', $fisier),
         'titlu' => $titlu,
         'texte' => [],
         'fisiere' => [],
@@ -179,6 +190,52 @@ foreach ($titluriPagini as $fisier => $titlu) {
     }
 }
 
+/*
+ * Un marcaj se cere o singură dată, oricâte pagini l-ar avea.
+ *
+ * „[DE COMPLETAT: telefon]" apare de cincisprezece ori — în antet, în subsol și
+ * la fiecare îndemn de pe fiecare pagină. Clientul are un singur număr de dat.
+ * Un document care i-l cere de cincisprezece ori nu se completează, se aruncă.
+ *
+ * Deci: se păstrează prima apariție, iar restul devin o notă lângă ea. La fel
+ * pentru fișiere, care oricum sunt reutilizate între pagini.
+ */
+$numaraSiStrange = static function (array &$rezultat, string $cheieLista, callable $amprenta): void {
+    $vazute = [];
+    foreach ($rezultat as $iPagina => $pagina) {
+        foreach ($pagina[$cheieLista] as $iRand => $rand) {
+            $cheie = $amprenta($rand);
+            if (isset($vazute[$cheie])) {
+                [$pPrima, $rPrima] = $vazute[$cheie];
+                $rezultat[$pPrima][$cheieLista][$rPrima]['alte_locuri'][] =
+                    $pagina['titlu'] . ' → ' . $rand['sectiune'];
+                unset($rezultat[$iPagina][$cheieLista][$iRand]);
+                continue;
+            }
+            $vazute[$cheie] = [$iPagina, $iRand];
+        }
+    }
+
+    /*
+     * Renumerotarea se face abia la final, după ce s-au parcurs toate paginile.
+     * Făcută în interiorul buclei, muta rândurile de sub picioarele hărții
+     * „$vazute", care ține indici: o apariție ulterioară ajungea să scrie nota
+     * pe alt rând, sau pe unul care nu mai exista.
+     */
+    foreach ($rezultat as $iPagina => $pagina) {
+        $rezultat[$iPagina][$cheieLista] = array_values($pagina[$cheieLista]);
+    }
+};
+
+$numaraSiStrange($rezultat, 'texte', static fn (array $r): string => $r['marcaj']);
+$numaraSiStrange($rezultat, 'fisiere', static fn (array $r): string => $r['fisier']);
+
+/* Paginile rămase fără nimic ies din listă. */
+$rezultat = array_values(array_filter(
+    $rezultat,
+    static fn (array $p): bool => $p['texte'] !== [] || $p['fisiere'] !== []
+));
+
 if (in_array('--json', $argv, true)) {
     echo json_encode($rezultat, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), "\n";
     exit(0);
@@ -189,11 +246,15 @@ $totalFisiere = 0;
 foreach ($rezultat as $pagina) {
     echo "\n{$pagina['titlu']}  ({$pagina['slug']})\n";
     foreach ($pagina['texte'] as $t) {
-        echo "  text     {$t['sectiune']}: {$t['marcaj']}\n";
+        $alte = count($t['alte_locuri'] ?? []);
+        $nota = $alte > 0 ? "  (și în alte {$alte} locuri)" : '';
+        echo "  text     {$t['sectiune']}: {$t['marcaj']}{$nota}\n";
         $totalTexte++;
     }
     foreach ($pagina['fisiere'] as $f) {
-        echo "  {$f['tip']}  {$f['sectiune']}: {$f['fisier']}\n";
+        $alte = count($f['alte_locuri'] ?? []);
+        $nota = $alte > 0 ? "  (și în alte {$alte} locuri)" : '';
+        echo "  {$f['tip']}  {$f['sectiune']}: {$f['fisier']}{$nota}\n";
         $totalFisiere++;
     }
 }
