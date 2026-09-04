@@ -1004,26 +1004,44 @@ if (trim($designHeaderOutput) !== '' && preg_match($mobileMenuTokenPattern, $des
     <?php
     // Banner de cookies (Admin → Setări magazin → Cookies). Apare cât timp
     // vizitatorul nu a ales nimic; alegerea se ține 6 luni într-un cookie.
+    //
+    // Culorile vin din variabilele temei, cu vechile valori drept rezervă:
+    // bannerul era turcoaz oriunde ar fi fost pus, adică pe orice site în
+    // afară de cel pentru care a fost desenat. Conturul butonului „Doar
+    // necesare" a urcat totodată la o linie care se vede — 1,47:1 nu trecea
+    // pragul de 3:1 cerut de WCAG 2.1 SC 1.4.11 pentru marginea unui buton.
     $bannerCookiesActiv = (string) ($designSettings['cookie_banner_enabled'] ?? '1') === '1'
         && !\App\Support\CookieConsent::aRaspuns();
     $textCookies = trim((string) ($designSettings['cookie_banner_text'] ?? ''));
     $linkPolitica = trim((string) ($designSettings['cookie_banner_policy_url'] ?? ''));
+    /*
+     * Eticheta legăturii, nu doar adresa ei.
+     *
+     * Textul era scris în cod: „Politica de confidențialitate", oricare ar fi
+     * fost adresa. Pe un site care are și o pagină separată de cookies —
+     * ținta firească a unui banner de cookies — ieșea o legătură care spunea
+     * un lucru și ducea în altul. Pentru un cititor de ecran, care parcurge
+     * pagina pe listă de legături, asta e o informație greșită, nu o nuanță.
+     */
+    $etichetaPolitica = str_contains(mb_strtolower($linkPolitica), 'cookie')
+        ? 'Politica de cookies'
+        : 'Politica de confidențialitate';
     ?>
     <?php if ($bannerCookiesActiv && $textCookies !== ''): ?>
         <div id="cookie-banner" role="region" aria-label="Setări cookies"
-             style="position:fixed;left:0;right:0;bottom:0;z-index:99998;background:#ffffff;border-top:1px solid #e2e8f0;box-shadow:0 -8px 32px rgba(15,23,42,.16);padding:16px 20px;">
+             style="position:fixed;left:0;right:0;bottom:0;z-index:99998;background:var(--surface, #ffffff);border-top:1px solid var(--line, #e2e8f0);box-shadow:0 -8px 32px rgba(15,23,42,.16);padding:16px 20px;">
             <div style="max-width:1160px;margin:0 auto;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;">
-                <p style="margin:0;flex:1 1 320px;min-width:260px;color:#334155;font-size:14px;line-height:1.55;">
+                <p style="margin:0;flex:1 1 320px;min-width:260px;color:var(--ink, #334155);font-size:14px;line-height:1.55;">
                     <?= htmlspecialchars($textCookies, ENT_QUOTES) ?>
                     <?php if ($linkPolitica !== ''): ?>
-                        <a href="<?= htmlspecialchars($linkPolitica, ENT_QUOTES) ?>" style="color:#0f766e;text-decoration:underline;">Politica de confidențialitate</a>
+                        <a href="<?= htmlspecialchars($linkPolitica, ENT_QUOTES) ?>" style="color:var(--text-brand, #0f766e);text-decoration:underline;"><?= htmlspecialchars($etichetaPolitica, ENT_QUOTES) ?></a>
                     <?php endif; ?>
                 </p>
                 <div style="display:flex;gap:10px;flex-wrap:wrap;">
                     <button type="button" data-cookie-choice="necessary"
-                            style="padding:11px 18px;border:1px solid #cbd5e1;border-radius:10px;background:#ffffff;color:#334155;font-size:14px;font-weight:600;cursor:pointer;">Doar necesare</button>
+                            style="padding:11px 18px;border:1px solid var(--line-forte, #cbd5e1);border-radius:10px;background:var(--surface, #ffffff);color:var(--ink, #334155);font-size:14px;font-weight:600;cursor:pointer;">Doar necesare</button>
                     <button type="button" data-cookie-choice="all"
-                            style="padding:11px 22px;border:none;border-radius:10px;background:#0f766e;color:#ffffff;font-size:14px;font-weight:700;cursor:pointer;">Accept toate</button>
+                            style="padding:11px 22px;border:none;border-radius:10px;background:var(--fill-brand, #0f766e);color:var(--on-fill-brand, #ffffff);font-size:14px;font-weight:700;cursor:pointer;">Accept toate</button>
                 </div>
             </div>
         </div>

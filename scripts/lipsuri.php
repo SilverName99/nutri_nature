@@ -119,6 +119,18 @@ function sectiunePentru(string $html, int $pozitie): string
     return 'începutul paginii';
 }
 
+/**
+ * „și într-un alt loc" / „și în alte 3 locuri".
+ *
+ * Textul era scris cu numărul lipit de plural, deci un singur alt loc ieșea
+ * „și în alte 1 locuri" — un rând pe care clientul îl citește ca pe o greșeală
+ * a noastră, nu ca pe o informație.
+ */
+function notaAlteLocuri(int $cate): string
+{
+    return $cate === 1 ? 'și într-un alt loc' : "și în alte {$cate} locuri";
+}
+
 $rezultat = [];
 
 foreach ($titluriPagini as $fisier => $titlu) {
@@ -247,13 +259,13 @@ foreach ($rezultat as $pagina) {
     echo "\n{$pagina['titlu']}  ({$pagina['slug']})\n";
     foreach ($pagina['texte'] as $t) {
         $alte = count($t['alte_locuri'] ?? []);
-        $nota = $alte > 0 ? "  (și în alte {$alte} locuri)" : '';
+        $nota = $alte > 0 ? '  (' . notaAlteLocuri($alte) . ')' : '';
         echo "  text     {$t['sectiune']}: {$t['marcaj']}{$nota}\n";
         $totalTexte++;
     }
     foreach ($pagina['fisiere'] as $f) {
         $alte = count($f['alte_locuri'] ?? []);
-        $nota = $alte > 0 ? "  (și în alte {$alte} locuri)" : '';
+        $nota = $alte > 0 ? '  (' . notaAlteLocuri($alte) . ')' : '';
         echo "  {$f['tip']}  {$f['sectiune']}: {$f['fisier']}{$nota}\n";
         $totalFisiere++;
     }

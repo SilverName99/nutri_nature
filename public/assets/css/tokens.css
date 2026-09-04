@@ -723,3 +723,209 @@ h5, h6, .eticheta-sectiune {
   color: var(--ink-muted);
   margin-bottom: 0;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   Pagini legale — termeni, confidențialitate, cookies
+   ══════════════════════════════════════════════════════════════════
+
+   Trei pagini cu aceeași formă, deci stilul stă aici, nu în CSS-ul
+   fiecăreia: altfel aceleași reguli s-ar fi copiat de trei ori și s-ar
+   fi corectat, mai devreme sau mai târziu, doar în două.
+
+   Sunt pagini pe care nimeni nu le citește din plăcere. Tot ce urmează
+   ține de un singur lucru: să poți găsi repede paragraful care te
+   privește și să-l poți citi fără efort.
+*/
+
+.pagina-legala { max-width: 46rem; }
+
+/*
+ * Antetul este „sticky-top", deci o legătură din cuprins ar duce titlul
+ * fix sub bara de meniu, unde nu se vede. Marginea de derulare îl ține
+ * dedesubt.
+ */
+.pagina-legala section[id] { scroll-margin-top: 6.5rem; }
+
+.pagina-legala h2 {
+  font-size: 1.5rem;
+  color: var(--verde-800);
+  margin-top: 2.75rem;
+  margin-bottom: .75rem;
+}
+
+.pagina-legala h2:first-child { margin-top: 0; }
+
+.pagina-legala h3 {
+  font-size: 1.125rem;
+  color: var(--verde-700);
+  margin-top: 1.75rem;
+  margin-bottom: .5rem;
+}
+
+/*
+ * „.custom-page-content p" are 54ch, potrivit pentru text de prezentare.
+ * Aici rândurile sunt însă enumerări și trimiteri, iar la 54ch un aliniat
+ * juridic se rupe în prea multe rânduri scurte. 68ch rămâne sub pragul de
+ * 80 de caractere cerut de WCAG 2.1 SC 1.4.8.
+ */
+.pagina-legala p,
+.pagina-legala li { max-width: 68ch; }
+
+.pagina-legala ul,
+.pagina-legala ol { padding-left: 1.25rem; }
+
+.pagina-legala li { margin-bottom: .5rem; line-height: 1.65; }
+
+/* Data ultimei actualizări, sub titlu. */
+.pagina-legala__actualizat {
+  font-size: .875rem;
+  color: var(--ink-muted);
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+/* ── Cuprinsul ───────────────────────────────────────────────────── */
+
+/*
+ * Pe ecran lat rămâne lângă text, ca să știi tot timpul unde ești. Sub
+ * 992px devine o listă obișnuită așezată înaintea textului: nimic fix,
+ * nimic care să acopere conținutul pe telefon.
+ */
+.cuprins {
+  padding: 1.25rem 1.5rem;
+  background: var(--crem-stins);
+  border-left: 3px solid var(--auriu-500);
+}
+
+@media (min-width: 992px) {
+  .cuprins { position: sticky; top: 6.5rem; }
+}
+
+.cuprins__titlu {
+  font-family: var(--font-baza);
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-accent);
+  margin-bottom: .75rem;
+}
+
+.cuprins ol {
+  list-style: none;
+  counter-reset: cuprins;
+  margin: 0;
+  padding: 0;
+}
+
+.cuprins li { counter-increment: cuprins; margin-bottom: .35rem; }
+
+.cuprins a {
+  display: block;
+  /* Ținta de atingere: 30,6px pe verticală, peste minimul de 24px din SC 2.5.8. */
+  padding: .3rem 0;
+  font-size: .9375rem;
+  line-height: 1.4;
+  color: var(--text-brand);
+  text-decoration: none;
+}
+
+.cuprins a::before {
+  content: counter(cuprins) ". ";
+  color: var(--text-accent);
+  font-weight: 700;
+}
+
+.cuprins a:hover,
+.cuprins a:focus-visible { text-decoration: underline; }
+
+/* ── Caseta cu datele operatorului ───────────────────────────────── */
+
+.caseta-operator {
+  padding: 1.25rem 1.5rem;
+  background: var(--verde-050);
+  border: 1px solid var(--line);
+  margin-bottom: 1.5rem;
+}
+
+.caseta-operator dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: .35rem 1rem;
+  margin: 0;
+}
+
+.caseta-operator dt { font-weight: 700; color: var(--verde-800); }
+.caseta-operator dd { margin: 0; overflow-wrap: anywhere; }
+
+@media (max-width: 575.98px) {
+  /* Sub 576px cele două coloane lasă valorilor un deget de lățime. */
+  .caseta-operator dl { grid-template-columns: 1fr; gap: 0; }
+  .caseta-operator dd { margin-bottom: .6rem; }
+}
+
+/* ── Tabelul de cookie-uri ───────────────────────────────────────── */
+
+/*
+ * Un tabel cu patru coloane nu încape pe un telefon. Nu-l strâng: îl las
+ * să se deruleze pe orizontală în cutia lui, cu pagina nemișcată.
+ */
+.tabel-cookies-cutie {
+  overflow-x: auto;
+  /*
+   * Conturul marchează unde se taie tabelul, deci nu e decor: îi trebuie
+   * linia care se vede, 3,97:1, nu cea de 1,4:1 folosită între secțiuni.
+   */
+  border: 1px solid var(--line-forte);
+}
+
+/*
+ * Nota „se derulează în lateral".
+ *
+ * Marginea tăiată a tabelului spune singură că textul continuă, dar numai
+ * dacă te uiți la ea. Un rând scris o face limpede — și dispare de la 768px
+ * în sus, unde tabelul încape întreg și nota ar fi minciună.
+ */
+.nota-derulare {
+  font-size: .875rem;
+  color: var(--ink-muted);
+  margin-bottom: .5rem;
+}
+
+@media (min-width: 768px) {
+  .nota-derulare { display: none; }
+}
+
+.tabel-cookies {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: .9375rem;
+}
+
+.tabel-cookies th,
+.tabel-cookies td {
+  padding: .75rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+
+.tabel-cookies thead th {
+  background: var(--verde-800);
+  color: var(--crem);
+  font-family: var(--font-baza);
+  font-size: .8125rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.tabel-cookies tbody tr:last-child th,
+.tabel-cookies tbody tr:last-child td { border-bottom: 0; }
+
+.tabel-cookies tbody th {
+  font-family: var(--font-baza);
+  font-weight: 700;
+  color: var(--verde-800);
+  white-space: nowrap;
+}

@@ -68,7 +68,9 @@ function randDeCompletat(unde, ce, exemplu, alteLocuri) {
          * secțiunea din stânga.
          */
         ...(alteLocuri
-          ? [p('apare și în alte ' + alteLocuri + ' locuri pe site',
+          ? [p(alteLocuri === 1
+                ? 'apare și într-un alt loc pe site'
+                : 'apare și în alte ' + alteLocuri + ' locuri pe site',
                 { size: 16, italics: true, color: '6B7280', after: 0 })]
           : []),
       ], { latime: 2400 }),

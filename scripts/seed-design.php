@@ -11,6 +11,11 @@ declare(strict_types=1);
  *
  *   php scripts/seed-design.php
  *   php scripts/seed-design.php --suprascrie
+ *
+ * Suprascrierea poate fi limitată la o singură setare, ca schimbarea unui rând
+ * din subsol să nu ceară rescrierea antetului și a meniului odată cu el:
+ *
+ *   php scripts/seed-design.php --suprascrie --doar=design_footer_html
  */
 
 require_once __DIR__ . '/../bootstrap.php';
@@ -35,6 +40,20 @@ if (!$db instanceof PDO) {
 }
 
 $suprascrie = in_array('--suprascrie', $argv, true);
+
+/*
+ * Setarea pe care o vizează rularea, dacă s-a cerut una anume.
+ *
+ * Fără ea, singura cale de a corecta un rând din subsol pe un site pornit era
+ * „--suprascrie" peste tot — adică peste antetul și meniul pe care clientul
+ * poate să le fi ajustat între timp din Design Site.
+ */
+$doar = '';
+foreach ($argv as $arg) {
+    if (str_starts_with((string) $arg, '--doar=')) {
+        $doar = substr((string) $arg, strlen('--doar='));
+    }
+}
 
 $meniu = [
     ['Acasă', '/'],
@@ -140,6 +159,7 @@ $footer = <<<'HTML'
       <div class="d-flex align-items-center gap-3 small">
         <a href="/termeni-si-conditii">Termeni și condiții</a>
         <a href="/politica-de-confidentialitate">Confidențialitate</a>
+        <a href="/politica-de-cookies">Cookies</a>
       </div>
     </div>
   </div>
@@ -194,6 +214,17 @@ JS;
  * sa nu stearga ce a schimbat el din Design Site.
  */
 $continut = [
+    /*
+     * Textul bannerului de cookies.
+     *
+     * Nu are valoare implicita in cod: views/layout.php afiseaza bannerul doar
+     * daca textul nu e gol, deci fara randul de aici site-ul punea cookie de
+     * sesiune fara sa spuna nimanui. Linkul catre politica il adauga tot
+     * layout-ul, dupa text.
+     */
+    'cookie_banner_text' => 'Folosim doar cookie-urile fără de care site-ul nu funcționează. '
+        . 'Nu măsurăm trafic și nu urmărim pe nimeni. Detaliile sunt în',
+    'cookie_banner_policy_url' => '/politica-de-cookies',
     'design_header_html' => $header,
     'design_menu_html' => '<a href="/">Acasă</a><a href="/despre-noi">Despre noi</a><a href="/servicii">Servicii</a><a href="/programare">Programare</a><a href="/blog">Blog</a><a href="/contact">Contact</a>',
     'design_footer_html' => $footer,
@@ -218,6 +249,16 @@ $comutatoare = [
      */
     'presentation_mode_enabled' => '1',
 ];
+
+if ($doar !== '' && !array_key_exists($doar, $continut) && !array_key_exists($doar, $comutatoare)) {
+    fwrite(STDERR, "Setarea „{$doar}” nu este scrisă de acest script.\n");
+    exit(1);
+}
+
+if ($doar !== '') {
+    $continut = array_intersect_key($continut, [$doar => true]);
+    $comutatoare = array_intersect_key($comutatoare, [$doar => true]);
+}
 
 $existente = Settings::all($db);
 $deScris = $comutatoare;

@@ -58,6 +58,13 @@ const PAGINI = [
     'servicii__consiliere-si-dezvoltare-personala' => 'Consiliere și dezvoltare personală',
     'programare' => 'Programare',
     'contact' => 'Contact',
+    /*
+     * Paginile legale. Subsolul trimite la ele de pe fiecare pagină, deci
+     * lipsa lor înseamnă trei legături moarte pe tot site-ul.
+     */
+    'termeni-si-conditii' => 'Termeni și condiții',
+    'politica-de-confidentialitate' => 'Politica de confidențialitate',
+    'politica-de-cookies' => 'Politica de cookies',
 ];
 
 $suprascrie = in_array('--suprascrie', $argv, true);
