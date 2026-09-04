@@ -29,15 +29,24 @@
 /*
  * Voalul.
  *
- * 60% negru, nu 55% ca la celălalt proiect: fotografia de aici nu e aleasă
- * încă, deci pragul trebuie să țină și dacă vine una luminoasă. Verificat pe
- * hașura de imagine lipsă și pe o fotografie de probă.
+ * Fotografia primită este deja închisă și caldă, iar textul stă în stânga, unde
+ * ea e cel mai întunecată. Voalul poate deci să scadă — altfel poza dispare sub
+ * el și rămâne o bandă verde. Valorile de mai jos sunt cele mai mici la care
+ * titlul alb trece pragul; măsurate pe fotografia reală, la trei lățimi.
  */
 .antet-acasa::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(14, 27, 14, .82), rgba(14, 27, 14, .55));
+  background: linear-gradient(90deg, rgba(14, 27, 14, .90), rgba(14, 27, 14, .66));
+}
+
+/*
+ * Pe ecran îngust textul se întinde pe toată lățimea, deci ajunge și peste
+ * capătul deschis al degradeului. Acolo voalul devine uniform și mai apăsat.
+ */
+@media (max-width: 991.98px) {
+  .antet-acasa::after { background: rgba(14, 27, 14, .90); }
 }
 
 /* „::after" este ultimul copil, deci fără nivel explicit voalul ar acoperi textul. */
@@ -48,7 +57,11 @@
 }
 
 .antet-acasa__eticheta {
-  color: var(--accent-pe-inchis);
+  /*
+   * Auriul de pe fundal închis, dar cu un pas mai deschis decât în restul
+   * site-ului: eticheta are 13px, deci îi trebuie 4,5:1, nu 3:1 ca titlului.
+   */
+  color: var(--auriu-200);
   margin-bottom: .75rem;
 }
 

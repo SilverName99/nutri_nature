@@ -16116,11 +16116,22 @@ HTML;
     {
         $activeCategory = trim((string) ($_GET['categorie'] ?? $_GET['category'] ?? ''));
         $sort = $this->shopCatalogSortPreview();
-        [$products] = $this->loadShopPreviewProducts($db, $activeCategory, $sort);
+        /*
+         * „loadShopPreviewProducts" întoarce lista de produse, nu o pereche.
+         *
+         * Aici se destructura — „[$products] = ..." — deci $products primea
+         * PRIMUL produs, nu lista. Cu produse în baza de date greșeala trecea
+         * neobservată, fiindcă primul element este oricum un tablou. Pe un site
+         * fără niciun produs, lista e goală, destructurarea dă null, iar
+         * editorul de pagini răspundea cu 500: nu se mai putea edita nicio
+         * pagină din dashboard.
+         */
+        $products = $this->loadShopPreviewProducts($db, $activeCategory, $sort);
         $categories = $this->loadShopPreviewCategories($db);
         if ($categories === []) {
-            [$fallbackProducts] = $this->loadShopPreviewProducts($db, '', 'featured');
-            $categories = $this->buildShopPreviewCategoriesFromProducts($fallbackProducts);
+            $categories = $this->buildShopPreviewCategoriesFromProducts(
+                $this->loadShopPreviewProducts($db, '', 'featured')
+            );
         }
         return $this->renderPartialPhpView('site/components/shop-catalog', [
             'products' => $products,
